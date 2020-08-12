@@ -13,10 +13,10 @@ if(isset($_POST['update']))
 	
 
 	// checking empty fields
-	if(empty($name) || empty($quantity) || empty($description)) {	
+	if(empty($categary) || empty($quantity) || empty($description)) {	
 			
 		if(empty($categary)) {
-			echo "<font color='red'>Name field is empty.</font><br/>";
+			echo "<font color='red'>categary field is empty.</font><br/>";
 		}
 		
 		if(empty($quantity)) {
@@ -43,8 +43,7 @@ $id = $_GET['id'];
 //selecting data associated with this particular id
 $result = mysqli_query($mysqli, "SELECT * FROM orders WHERE id=$id");
 
-while($res = mysqli_fetch_array($result))
-{
+while($res = mysqli_fetch_array($result)) {
 	$categary = $res['categary'];
 	$quantity = $res['quantity'];
 	$description = $res['description'];
@@ -75,7 +74,7 @@ while($res = mysqli_fetch_array($result))
 				<td><input type="text" name="description" value="<?php echo $description;?>"></td>
 			</tr>
 			
-				<td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>
+				<td><input type="hidden" name="id" value="<?php echo $_GET['id'];?>"></td>
 				<td><input type="submit" name="update" value="Update"></td>
 			</tr>
 		</table>

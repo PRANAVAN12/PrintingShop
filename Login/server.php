@@ -42,7 +42,7 @@
 
 			$_SESSION['UserName'] = $UserName;
 			$_SESSION['success'] = "You are now logged in";
-			header('location: Memberview.php');
+			header('location: ../Memberview.php');
 		}
 
 	}
@@ -76,11 +76,11 @@
 		}	
 	
 	}
+
+	//Login Admin
 	if (isset($_POST['login_admin'])) {
 		$UserName = filter_input(INPUT_POST, 'UserName');
 		$password = filter_input(INPUT_POST, 'password');
-
-
 		if (empty($UserName)) {
 			array_push($errors, "UserName is required");
 		}

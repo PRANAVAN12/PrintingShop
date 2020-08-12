@@ -4,16 +4,14 @@ include_once("config.php");
 
 if(isset($_POST['update']))
 {	
-
 	$id = mysqli_real_escape_string($mysqli, $_POST['id']);
-	
 	$UserName = mysqli_real_escape_string($mysqli, $_POST['UserName']);
 	$Email = mysqli_real_escape_string($mysqli, $_POST['Email']);
 	$Mobile = mysqli_real_escape_string($mysqli, $_POST['Mobile']);	
 	$Password= mysqli_real_escape_string($mysqli, $_POST['Password']);	
 
 	// checking empty fields
-	if(empty($name) || empty($Email) || empty($email)|| empty($Password)) {	
+	if(empty($UserName) || empty($Email) || empty($Mobile)|| empty($Password)) {	
 			
 		if(empty($UserName)) {
 			echo "<font color='red'>Name field is empty.</font><br/>";
@@ -40,17 +38,19 @@ if(isset($_POST['update']))
 ?>
 <?php
 //getting id from url
-$id = $_GET['id'];
+if(sizeof($_GET)!=0){
+	$id = $_GET['id'];
+	//selecting data associated with this particular id
+	$result = mysqli_query($mysqli, "SELECT * FROM users WHERE id=$id");
+	
+	while($res = mysqli_fetch_array($result))
+	{
+		$UserName = $res['UserName'];
+		$Email = $res['Email'];
+		$Mobile = $res['Mobile'];
+		$Password = $res['Password'];
+	}
 
-//selecting data associated with this particular id
-$result = mysqli_query($mysqli, "SELECT * FROM users WHERE id=$id");
-
-while($res = mysqli_fetch_array($result))
-{
-	$UserName = $res['UserName'];
-	$Email = $res['Email'];
-	$Mobile = $res['Mobile'];
-	$Password = $res['Password'];
 }
 ?>
 <html>
@@ -81,7 +81,7 @@ while($res = mysqli_fetch_array($result))
 				<td><input type="text" name="Password" value="<?php echo $Password;?>"></td>
 			</tr>
 			<tr>
-				<td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>
+				<td><input type="hidden" name="id" value="<?php echo $_GET['id'];?>"></td>
 				<td><input type="submit" name="update" value="Update"></td>
 			</tr>
 		</table>
