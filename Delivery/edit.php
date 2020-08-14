@@ -51,34 +51,42 @@ while($res = mysqli_fetch_array($result))
 	
 }
 ?>
+<<!DOCTYPE html>
 <html>
-<head>	
-	<title>Edit Data</title>
+<head>
+	<meta charset="utf-8">
+	<title>Form-v9 by Colorlib</title>
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!-- Font-->
+	<link rel="stylesheet" type="text/css" href="../frm/css/nunito-font.css">
+	<!-- Main Style Css -->
+    <link rel="stylesheet" href="../frm/css/style.css"/>
 </head>
-
-<body>
-	<a href="index.php">Home</a>
-	<br/><br/>
-	
-	<form name="form1" method="post" action="edit.php">
-		<table border="0">
-			<tr> 
-				<td>UserName</td>
-				<td><input type="text" name="UserName" value="<?php echo $UserName;?>"></td>
-			</tr>
-			<tr> 
-				<td>mobile</td>
-				<td><input type="text" name="mobile" value="<?php echo $mobile;?>"></td>
-			</tr>
-			<tr> 
-				<td>Address</td>
-				<td><input type="text" name="Address" value="<?php echo $Address;?>"></td>
-			</tr>
-			
-				<td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>
-				<td><input type="submit" name="update" value="Update"></td>
-			</tr>
-		</table>
-	</form>
+<body class="form-v9">
+	<div class="page-content">
+		<div class="form-v9-content" style="background-image: url('../frm/images/form-v9.jpg')">
+			<form class="form-detail" name="form1" method="post" action="edit.php">
+				<h2>Update</h2>
+				<div class="form-row-total">
+					<div class="form-row">
+						<input type="text" name="UserName" value="<?php echo $UserName;?>"placeholder="Category" required>
+					</div>
+					<div class="form-row">
+						<input type="text"name="mobile" value="<?php echo $mobile;?>" class="input-text" placeholder="Mobile" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}">
+					</div>
+				</div>
+				<div class="form-row-total">
+					<div class="form-row">
+						<input type="text" name="Address" value="<?php echo $Address;?>" class="input-text" placeholder="Address" required>
+					</div>
+				</div>
+				<div class="form-row-last">
+					<td><input type="hidden" name="id" value="<?php echo $_GET['id'];?>"></td>
+					<input type="submit"  class="register" name="update" value="Update">
+				</div>
+			</form>
+		</div>
+	</div>
 </body>
 </html>

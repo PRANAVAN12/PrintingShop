@@ -33,7 +33,7 @@ if(isset($_POST['update']))
 		
 		//redirectig to the display page. In our case, it is index.php
 		header("Location: index.php");
-	}
+		}
 }
 ?>
 <?php
@@ -53,38 +53,47 @@ if(sizeof($_GET)!=0){
 
 }
 ?>
+<!DOCTYPE html>
 <html>
-<head>	
-	<title>Edit Data</title>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!-- Font-->
+	<link rel="stylesheet" type="text/css" href="../frm/css/nunito-font.css">
+	<!-- Main Style Css -->
+    <link rel="stylesheet" href="../frm/css/style.css"/>
 </head>
-
-<body>
-	<a href="index.php">Home</a>
-	<br/><br/>
-	
-	<form name="form1" method="post" action="edit.php">
-		<table border="0">
-			<tr> 
-				<td>Name</td>
-				<td><input type="text" name="UserName" value="<?php echo $UserName;?>"></td>
-			</tr>
-			<tr> 
-				<td>Email</td>
-				<td><input type="text" name="Email" value="<?php echo $Email;?>"></td>
-			</tr>
-			<tr> 
-				<td>Mobile</td>
-				<td><input type="text" name="Mobile" value="<?php echo $Mobile;?>"></td>
-			</tr>
-			<tr> 
-				<td>Password</td>
-				<td><input type="text" name="Password" value="<?php echo $Password;?>"></td>
-			</tr>
-			<tr>
-				<td><input type="hidden" name="id" value="<?php echo $_GET['id'];?>"></td>
-				<td><input type="submit" name="update" value="Update"></td>
-			</tr>
-		</table>
-	</form>
+<body class="form-v9">
+	<div class="page-content">
+		<div class="form-v9-content" style="background-image: url('../frm/images/form-v9.jpg')">
+			<form class="form-detail" name="form1" method="post" action="edit.php">
+				<h2>Update</h2>
+				<div class="form-row-total">
+					<div class="form-row">
+						<input type="text" name="UserName" value="<?php echo $UserName;?>" placeholder="UserName" required>
+					</div>
+					<div class="form-row">
+						<input type="text" name="Email" value="<?php echo $Email;?>" placeholder="Email" required >
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-row">
+						<input type="text"  name="Mobile" value="<?php echo $Mobile;?>" class="input-text" placeholder="mobile" required>
+					</div>
+				</div>
+				<div class="form-row-total">
+					<div class="form-row">
+						<input type="text"   name="Password" value="<?php echo $Password;?>" class="input-text" placeholder="Password" required>
+					</div>
+				</div>
+				<div class="form-row-total">
+					<td><input type="hidden" name="id" value="<?php echo $_GET['id'];?>"></td>
+					<input type="submit"  class="register" name="update" value="Update">
+				</div>
+			</form>
+		</div>
+	</div>
 </body>
 </html>
