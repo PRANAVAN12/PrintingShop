@@ -72,7 +72,7 @@ while($res = mysqli_fetch_array($result)) {
 						<input type="text" name="categary" value="<?php echo $categary;?>" class="input-text" placeholder="Category" required>
 					</div>
 					<div class="form-row">
-						<input type="text"name="quantity" value="<?php echo $quantity;?>" class="input-text" placeholder="Quantity" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}">
+						<input type="text"name="quantity" value="<?php echo $quantity;?>" class="input-text" placeholder="Quantity" >
 					</div>
 				</div>
 				<div class="form-row-total">

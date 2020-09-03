@@ -65,9 +65,11 @@
 			//$password = md5($password);
 			$query = "SELECT * FROM users WHERE UserName='$UserName' AND password='$password'";
 			$results = mysqli_query($db, $query);
+			$user=mysqli_fetch_assoc($results);
 
 			if (mysqli_num_rows($results) == 1) {
 				$_SESSION['UserName'] = $UserName;
+				$_SESSION['UserId']=$user['id'];
 				$_SESSION['success'] = "You are now logged in";
 				header('location: ../Memberview.php');
 			}else {

@@ -5,6 +5,7 @@
 
 <body>
 <?php
+session_start();
 //including the database connection file
 include_once("config.php");
 
@@ -12,7 +13,6 @@ if(isset($_POST['Submit'])) {
 	$categary = mysqli_real_escape_string($mysqli, $_POST['categary']);
 	$quantity = mysqli_real_escape_string($mysqli, $_POST['quantity']);
 	$description = mysqli_real_escape_string($mysqli, $_POST['description']);
-	
 		
 	// checking empty fields
 	if(empty($categary) || empty($quantity) || empty($description)) {
@@ -35,11 +35,19 @@ if(isset($_POST['Submit'])) {
 		// if all the fields are filled (not empty) 
 			
 		//insert data to database	
-		$result = mysqli_query($mysqli, "INSERT INTO orders (categary,quantity,description) VALUES('$categary','$quantity','$description')");
+
+		$user_id=$_SESSION['UserId'];
+		$query="INSERT INTO orders(categary,quantity,user_id,description) VALUES('$categary','$quantity','$user_id','$description')";
+		$result = mysqli_query($mysqli, $query);
+		if($result){
+			//display success message
+			echo "<font color='green'>Data added successfully.";
+			echo "<br/><a href='../Purchase/add.html'>Go to Payment</a>";
+		}else{
+			echo "Insert failed";
+		}
+	
 		
-		//display success message
-		echo "<font color='green'>Data added successfully.";
-		echo "<br/><a href='../Purchase/add.html'>Go to Payment</a>";
 	}
 }
 ?>
