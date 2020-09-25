@@ -38,12 +38,58 @@
 	          <li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
 	          <li class="nav-item"><a href="index.html" class="nav-link"><span>logOut</span></a></li>
 	          
-	          <li class="nav-item"><a href="Orders/add.html" class="nav-link"><span>Orders</span></a></li>      
-	         
+	          <li class="nav-item"><a href="Orders/add.html" class="nav-link"><span>Orders</span></a></li>    
+            <nav class="navigation">  
+            <ul class="inner-navigation">
+            <li class="right">
+                  <div class="dropdown-container">
+                    <a href="#" data-dropdown="notificationMenu" class="menu-link has-notifications circle">
+                      <i class="fa icon-bell"></i>
+                    </a>
+                    <ul class="dropdown" name="notificationMenu">
+                      <li class="notification-group">
+                        <div class="noti_area">
+                        <?php
+                            include_once("Orders/config.php");
+                            $query="select orders.*,users.UserName from orders INNER JOIN users ON users.id=orders.user_id;";
+                            $result = mysqli_query($mysqli, $query);
+
+                            while($res = mysqli_fetch_array($result)) {
+                              echo "<a href=\"/Printers/Orders/UserOrder.php?id=".$res['id']."\">";
+                              ?>
+                              <div class="single_noti">
+
+                              <?php
+                              echo "<div class=\"noti_username\">".$res['UserName']."</div>";
+                              echo "<div class=\"noti_category\">".$res['categary']."(".$res['quantity'].")</div>";
+                              // echo "<div>".$res['quantity']."</div><br>";
+                              // echo "<div>".$res['description']."</div><br>";
+                              // echo "<div>".$res['UserName']."</div><br>";
+                              echo "<hr>";
+                              echo "</div>";
+                              echo "</a>";
+                            }
+                            ?>
+
+                      
+                        <!-- </div> -->
+                          </div>
+                      </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
 	        </ul>
+          </nav>
+          </ul>
+          
 	      </div>
+        
 	    </div>
 	  </nav>
+
+    
 	  <section class="hero-wrap js-fullheight">
       <div class="overlay"></div>
       <div class="container">
@@ -385,3 +431,349 @@
     
   </body>
 </html>
+
+<style>
+
+@import 'https://fonts.googleapis.com/css?family=Open+Sans';
+
+
+
+ .navigation .inner-navigation li .menu-link.menu-anchor {
+	 padding: 20px;
+	 margin: 0;
+	 background: #ff5252;
+	 color: #fff;
+}
+ .navigation .inner-navigation li .menu-link.has-notifications {
+	 background: #ff5252;
+	 color: #fff;
+}
+ .navigation .inner-navigation li .menu-link.circle {
+	 line-height: 3.8em;
+	 padding: 7px 12px;
+	 border-radius: 50%;
+}
+ .navigation .inner-navigation li .menu-link.circle:hover {
+	 background: #ff5252;
+	 color: #fff;
+}
+ .navigation .inner-navigation li .menu-link.square:hover {
+	 background: #ff5252;
+	 color: #fff;
+	 transition: background 0.5s, color 0.5s;
+}
+ .dropdown-container {
+	 overflow-y: hidden;
+}
+ .dropdown-container.expanded .dropdown {
+	 -webkit-animation: fadein 0.5s;
+	 -moz-animation: fadein 0.5s;
+	 -ms-animation: fadein 0.5s;
+	 -o-animation: fadein 0.5s;
+	 animation: fadein 0.5s;
+	 display: block;
+}
+ .dropdown-container .dropdown {
+	 -webkit-animation: fadeout 0.5s;
+	 -moz-animation: fadeout 0.5s;
+	 -ms-animation: fadeout 0.5s;
+	 -o-animation: fadeout 0.5s;
+	 animation: fadeout 0.5s;
+	 display: none;
+	 position: absolute;
+	 width: 300px;
+	 height: auto;
+	 max-height: 600px;
+	 overflow-y: hidden;
+	 padding: 0;
+	 margin: 0;
+	 background: #eee;
+	 margin-top: 3px;
+	 margin-right: -15px;
+	 border-top: 4px solid #ff5252;
+	 border-bottom-left-radius: 15px;
+	 border-bottom-right-radius: 15px;
+	 -webkit-box-shadow: 2px 2px 15px -5px rgba(0, 0, 0, 0.75);
+	 -moz-box-shadow: 2px 2px 15px -5px rgba(0, 0, 0, 0.75);
+	 box-shadow: 2px 2px 15px -5px rgba(0, 0, 0, 0.75);
+	/* &:before{
+		 position: absolute;
+		 content: ' ';
+		 width: 0;
+		 height: 0;
+		 top: -13px;
+		 right: 7px;
+		 border-left: 8px solid transparent;
+		 border-right: 8px solid transparent;
+		 border-bottom: 10px solid $secondary-color;
+	}
+	 */
+}
+ .dropdown-container .dropdown .notification-group {
+	 border-bottom: 1px solid #e3e3e3;
+	 overflow: hidden;
+	 min-height: 65px;
+}
+ .dropdown-container .dropdown .notification-group:last-child {
+	 border-bottom: 0;
+	 border-bottom-left-radius: 15px;
+	 border-bottom-right-radius: 15px;
+}
+ .dropdown-container .dropdown .notification-group .notification-tab {
+	 padding: 0px 25px;
+	 min-height: 65px;
+}
+ .dropdown-container .dropdown .notification-group .notification-tab:hover {
+	 cursor: pointer;
+	 background: #3f51b5;
+}
+ .dropdown-container .dropdown .notification-group .notification-tab:hover .fa, .dropdown-container .dropdown .notification-group .notification-tab:hover h4, .dropdown-container .dropdown .notification-group .notification-tab:hover .label {
+	 color: #fff;
+	 display: inline-block;
+}
+ .dropdown-container .dropdown .notification-group .notification-tab:hover .label {
+	 background: #ff5252;
+	 border-color: #ff5252;
+}
+ .dropdown-container .dropdown .notification-group .notification-list {
+	 padding: 0;
+	 overflow-y: auto;
+	 height: 0px;
+	 max-height: 250px;
+	 transition: height 0.5s;
+}
+ .dropdown-container .dropdown .notification-group .notification-list .notification-list-item {
+	 padding: 5px 25px;
+	 border-bottom: 1px solid #e3e3e3;
+}
+ .dropdown-container .dropdown .notification-group .notification-list .notification-list-item .message {
+	 margin: 5px 5px 10px;
+}
+ .dropdown-container .dropdown .notification-group .notification-list .notification-list-item .item-footer a {
+	 color: #3f51b5;
+	 text-decoration: none;
+}
+ .dropdown-container .dropdown .notification-group .notification-list .notification-list-item .item-footer .date {
+	 float: right;
+}
+ .dropdown-container .dropdown .notification-group .notification-list .notification-list-item:nth-of-type(odd) {
+	 background: #e3e3e3;
+}
+ .dropdown-container .dropdown .notification-group .notification-list .notification-list-item:hover {
+	 cursor: pointer;
+}
+ .dropdown-container .dropdown .notification-group .notification-list .notification-list-item:last-child {
+	 border-bottom: 0;
+	 border-bottom-left-radius: 15px;
+	 border-bottom-right-radius: 15px;
+}
+ .dropdown-container .dropdown .notification-group.expanded .notification-tab {
+	 background: #3f51b5;
+}
+ .dropdown-container .dropdown .notification-group.expanded .notification-tab .fa, .dropdown-container .dropdown .notification-group.expanded .notification-tab h4, .dropdown-container .dropdown .notification-group.expanded .notification-tab .label {
+	 color: #fff;
+	 display: inline-block;
+}
+ .dropdown-container .dropdown .notification-group.expanded .notification-tab .label {
+	 background: #ff5252;
+	 border-color: #ff5252;
+}
+ .dropdown-container .dropdown .notification-group.expanded .notification-list {
+	 height: 250px;
+	 max-height: 250px;
+	 transition: height 0.5s;
+}
+ .dropdown-container .dropdown .notification-group .fa, .dropdown-container .dropdown .notification-group h4, .dropdown-container .dropdown .notification-group .label {
+	 color: #333;
+	 display: inline-block;
+}
+ .dropdown-container .dropdown .notification-group .fa {
+	 margin-right: 5px;
+	 margin-top: 25px;
+}
+ .dropdown-container .dropdown .notification-group .label {
+	 float: right;
+	 margin-top: 20px;
+	 color: #3f51b5;
+	 border: 1px solid #3f51b5;
+	 padding: 0px 7px;
+	 border-radius: 15px;
+}
+ .right {
+	 float: right;
+}
+ .left {
+	 float: left;
+}
+ @media only screen and (max-width: 321px) {
+	 .dropdown-container .dropdown .notification-group .notification-tab h4 {
+		 display: none;
+	}
+	 .dropdown-container .dropdown .notification-group .notification-tab:hover h4 {
+		 display: none;
+	}
+	 .dropdown-container .dropdown .notification-group.expanded .notification-tab h4 {
+		 display: none;
+	}
+}
+ @media only screen and (max-width: 514px) {
+	 .dropdown-container .dropdown {
+		 width: 100%;
+		 margin: 0px;
+		 left: 0;
+	}
+}
+ @keyframes fadein {
+	 from {
+		 opacity: 0;
+	}
+	 to {
+		 opacity: 1;
+	}
+}
+ @-moz-keyframes fadein {
+	 from {
+		 opacity: 0;
+	}
+	 to {
+		 opacity: 1;
+	}
+}
+ @-webkit-keyframes fadein {
+	 from {
+		 opacity: 0;
+	}
+	 to {
+		 opacity: 1;
+	}
+}
+ @-ms-keyframes fadein {
+	 from {
+		 opacity: 0;
+	}
+	 to {
+		 opacity: 1;
+	}
+}
+ @-o-keyframes fadein {
+	 from {
+		 opacity: 0;
+	}
+	 to {
+		 opacity: 1;
+	}
+}
+ @keyframes fadeout {
+	 from {
+		 opacity: 1;
+	}
+	 to {
+		 opacity: 0;
+	}
+}
+ @-moz-keyframes fadeout {
+	 from {
+		 opacity: 1;
+	}
+	 to {
+		 opacity: 0;
+	}
+}
+ @-webkit-keyframes fadeout {
+	 from {
+		 opacity: 1;
+	}
+	 to {
+		 opacity: 0;
+	}
+}
+ @-ms-keyframes fadeout {
+	 from {
+		 opacity: 1;
+	}
+	 to {
+		 opacity: 0;
+	}
+}
+ @-o-keyframes fadeout {
+	 from {
+		 opacity: 1;
+	}
+	 to {
+		 opacity: 0;
+	}
+}
+ 
+.noti_area{
+  height:250px;
+  overflow:scroll;
+  overflow-x:hidden;
+}
+.single_noti div{
+  padding: 10px;
+}
+.single_noti hr{
+  margin:0px;
+
+}
+.single_noti:hover{
+  background-color:#ffffff;
+}
+.noti_username{
+  color: black;
+}
+.noti_category{
+  margin-top: -27px;
+    font-size: 13px;
+}
+</style>
+
+<script>
+
+
+//Open dropdown when clicking on element
+$(document).on('click', "a[data-dropdown='notificationMenu']",  function(e){
+  e.preventDefault();
+  
+  var el = $(e.currentTarget);
+  
+  $('body').prepend('<div id="dropdownOverlay" style="background: transparent; height:100%;width:100%;position:fixed;"></div>')
+  
+  var container = $(e.currentTarget).parent();
+  var dropdown = container.find('.dropdown');
+  var containerWidth = container.width();
+  var containerHeight = container.height();
+  
+  var anchorOffset = $(e.currentTarget).offset();
+
+  dropdown.css({
+    'right': containerWidth / 2 + 'px'
+  })
+  
+  container.toggleClass('expanded')
+  
+});
+
+//Close dropdowns on document click
+
+$(document).on('click', '#dropdownOverlay', function(e){
+  var el = $(e.currentTarget)[0].activeElement;
+  
+  if(typeof $(el).attr('data-dropdown') === 'undefined'){
+    $('#dropdownOverlay').remove();
+    $('.dropdown-container.expanded').removeClass('expanded');
+  }
+})
+
+//Dropdown collapsile tabs
+$('.notification-tab').click(function(e){
+  if($(e.currentTarget).parent().hasClass('expanded')){
+    $('.notification-group').removeClass('expanded');
+  }
+  else{
+    $('.notification-group').removeClass('expanded');
+    $(e.currentTarget).parent().toggleClass('expanded');
+  }
+})
+
+</script>

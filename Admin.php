@@ -65,7 +65,7 @@
                             $result = mysqli_query($mysqli, $query);
 
                             while($res = mysqli_fetch_array($result)) {
-                              echo "<a href=\"/Printers/Orders/edit.php?id=".$res['id']."\">";
+                              echo "<a href=\"/Printers/Orders/OrderEdit.php?id=".$res['id']."\">";
                               ?>
                               <div class="single_noti">
 

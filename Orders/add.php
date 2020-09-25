@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>Add Data</title>
+
 </head>
 
 <body>
@@ -41,8 +41,8 @@ if(isset($_POST['Submit'])) {
 		$result = mysqli_query($mysqli, $query);
 		if($result){
 			//display success message
-			echo "<font color='green'>Data added successfully.";
-			echo "<br/><a href='../Purchase/add.html'>Go to Payment</a>";
+			echo "<font color='green'>Your Order added successfully.";
+			echo "<br/><a href='./Memberview.php'>Wait For Admin Replys</a>";
 		}else{
 			echo "Insert failed";
 		}
